@@ -2,11 +2,15 @@ import { AiOutlinePlusCircle } from "react-icons/ai"
 import "../styles/header.css"
 import { useState } from "react"
 
-export function Header({ onAddTask }) {
+interface HeaderProps {
+    onAddTask: (taskTitle: string) => void;
+}
+
+export function Header({ onAddTask }: HeaderProps) {
 
     const [title, setTitle] = useState("")
 
-    function handleSubmit(e: React.FormEvent) {
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         onAddTask(title)
@@ -26,7 +30,7 @@ export function Header({ onAddTask }) {
                 <button>
                     Add
                     <AiOutlinePlusCircle size={30} />
-                    </button>
+                </button>
             </form>
         </header>
     )

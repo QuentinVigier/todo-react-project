@@ -2,8 +2,20 @@ import { TbTrash } from "react-icons/tb"
 import "../styles/task.css"
 import { BsFillCheckCircleFill } from "react-icons/bs"
 
-export default function Task({ task, onComplete, onDelete }) {
-    return(
+interface Task {
+    id: string;
+    title: string;
+    isCompleted: boolean;
+}
+
+interface TaskProps {
+    task: Task;
+    onComplete: (taskId: string) => void;
+    onDelete: (taskId: string) => void;
+}
+
+export default function Task({ task, onComplete, onDelete }: TaskProps) {
+    return (
         <div className="task">
             <button className="checkContainer" onClick={() => onComplete(task.id)}>
                 {task.isCompleted ? <BsFillCheckCircleFill /> : <div />}
