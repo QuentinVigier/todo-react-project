@@ -1,7 +1,7 @@
 import "../styles/tasks.css"
 import Task from "./task"
 
-export default function Tasks() {
+export default function Tasks({ tasks }) {
     return (
         <>
         <section className="tasks">
@@ -18,7 +18,9 @@ export default function Tasks() {
             </header>
 
             <div className="list">
-                <Task />
+                {tasks.map(task => (
+                    <Task key={task.id} task={task} />
+                ))}
             </div>
         </section>
         </>
