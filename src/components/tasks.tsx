@@ -1,25 +1,29 @@
 import "../styles/tasks.css"
 import Task from "./task"
 
-export default function Tasks({ tasks }) {
+export default function Tasks({ tasks, onComplete }) {
+
+    const tasksQuantity = tasks.length;
+    const completedTasks = tasks.filter(task => task.completed).length;
+
     return (
         <>
         <section className="tasks">
             <header className="tasks_header">
                 <div>
                     <p>Create Tasks</p>
-                    <span>10</span>
+                    <span>{tasksQuantity}</span>
                 </div>
 
                 <div>
                     <p className="textPurple">Completed Tasks</p>
-                    <span>1 of 10</span>
+                    <span>{completedTasks} of {tasksQuantity}</span>
                 </div>
             </header>
 
             <div className="list">
                 {tasks.map(task => (
-                    <Task key={task.id} task={task} />
+                    <Task key={task.id} task={task} onComplete={onComplete} onDelete={onDelete} />
                 ))}
             </div>
         </section>

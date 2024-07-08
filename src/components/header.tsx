@@ -6,14 +6,14 @@ export function Header({ onAddTask }) {
 
     const [title, setTitle] = useState("")
 
-    function handleSubmit(e) {
+    function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
 
         onAddTask(title)
         setTitle("")
     }
 
-    function onChangeTitle(e) {
+    function onChangeTitle(e: React.ChangeEvent<HTMLInputElement>) {
         setTitle(e.target.value)
     }
 
