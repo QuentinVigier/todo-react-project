@@ -1,3 +1,4 @@
+import { AiOutlinePlusCircle } from "react-icons/ai"
 import "../styles/header.css"
 
 export function Header() {
@@ -7,7 +8,10 @@ export function Header() {
 
             <form className="newTaskForm">
                 <input type="text" placeholder="Add a task" />
-                <button>Add</button>
+                <button>
+                    Add
+                    <AiOutlinePlusCircle size={30} />
+                    </button>
             </form>
         </header>
     )
