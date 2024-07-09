@@ -8,6 +8,7 @@ interface Task {
   id: string;
   title: string;
   isCompleted: boolean;
+  category: string;
 }
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         id: crypto.randomUUID(),
         title: taskTitle,
         isCompleted: false,
+        category: "Default",
       }
     ]);
   }

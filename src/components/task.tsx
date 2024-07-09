@@ -6,6 +6,7 @@ interface Task {
     id: string;
     title: string;
     isCompleted: boolean;
+    category: string;
 }
 
 interface TaskProps {
