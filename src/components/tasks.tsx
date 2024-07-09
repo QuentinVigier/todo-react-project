@@ -13,9 +13,13 @@ interface TasksProps {
     tasks: Task[];
     onComplete: (taskId: string) => void;
     onDelete: (taskId: string) => void;
+    choice: string;
 }
 
-export default function Tasks({ tasks, onComplete, onDelete }: TasksProps) {
+export default function Tasks({ tasks, onComplete, onDelete, choice }: TasksProps) {
+
+    // Filtrer les tâches par catégorie
+    const filteredTasksByCate = choice === 'All' ? tasks : tasks.filter(task => task.category === choice);
 
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -42,7 +46,7 @@ export default function Tasks({ tasks, onComplete, onDelete }: TasksProps) {
                 </form>
 
                 <div className="list">
-                    {tasks.filter((item) => {
+                    {filteredTasksByCate.filter((item) => {
                         return item.title.toLowerCase().includes(searchTerm.toLowerCase());
                     }).map(task => (
                         <Task key={task.id} task={task} onComplete={onComplete} onDelete={onDelete} />
