@@ -15,6 +15,10 @@ interface Task {
 
 function App() {
 
+  //--------------------------------------------------------------------------------------
+  //GESTION DES TASKS
+  //--------------------------------------------------------------------------------------
+
   const [tasks, setTasks] = useState<Task[]>([]);
 
   function loadSavedTasks() {
@@ -99,11 +103,35 @@ function App() {
     setSelectedOption(option);
   };
 
+  const [choice, setChoice] = useState<string>("All");
+
+  //--------------------------------------------------------------------------------------
+  //AFFICHAGE DE LA PAGE
+  //--------------------------------------------------------------------------------------
+
   return (
     <>
       <Header onAddTask={addTask} />
       <div className="container-categories">
       <h1 className="textPurple">Choisir une catégorie</h1>
+
+      <div id="sidebar">
+        <div className="logo">
+          <a className="textPurple" href="/">My ToDoList APP</a>
+        </div>
+        <div className="nav">
+          <a onClick={() => setChoice("All")}>All</a>
+          {options.map(option => (
+            <a 
+            key={option}
+            onClick={() => setChoice(option)}
+            >{option} 
+            </a>
+          ))}
+        </div>
+      </div>
+
+
       <SelectForm
         options={options}
         onOptionsChange={handleOptionsChange}
@@ -112,13 +140,14 @@ function App() {
       />
       <div>
         <p className="textPurple">Selected Category : <strong className="textBlue">{selectedOption}</strong></p>
-        {/* <p>All Categories: {options.join(', ')}</p> */}
       </div>
     </div>
       <Tasks 
       tasks={tasks}
       onComplete={toggleTaskCompleted}
-      onDelete ={deleteTask}/>
+      onDelete ={deleteTask}
+      choice={choice}
+      />
     </>
   )
 }
