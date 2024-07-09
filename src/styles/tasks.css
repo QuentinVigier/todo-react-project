@@ -43,3 +43,28 @@
     flex-direction: column;
     gap: 12px;
 }
+
+.searchForm {
+    height: 54px;
+    width: 100%;
+    max-width: 736px;
+    display: flex;
+    gap: 8px;
+    padding: 0 1rem;
+    margin: 50px 0;
+}
+
+.searchForm input {
+    height: 100%;
+    flex: 1;
+    color: #fff;
+    background: #262626;
+    border: 1px solid #0D0D0D;
+    border-radius: 8px;
+    padding: 0 16px;
+    font-size: 16px;
+}
+
+.searchForm input::placeholder {
+    color: #808080;
+}

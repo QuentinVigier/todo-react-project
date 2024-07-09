@@ -38,7 +38,7 @@ function App() {
       {
         id: crypto.randomUUID(),
         title: taskTitle,
-        isCompleted: false
+        isCompleted: false,
       }
     ]);
   }

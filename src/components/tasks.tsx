@@ -1,5 +1,6 @@
 import "../styles/tasks.css"
 import Task from "./task"
+import { useState } from "react";
 
 interface Task {
     id: string;
@@ -14,6 +15,8 @@ interface TasksProps {
 }
 
 export default function Tasks({ tasks, onComplete, onDelete }: TasksProps) {
+
+    const [searchTerm, setSearchTerm] = useState("");
 
     const tasksQuantity = tasks.length;
     const completedTasks = tasks.filter(task => task.isCompleted).length;
@@ -33,8 +36,14 @@ export default function Tasks({ tasks, onComplete, onDelete }: TasksProps) {
                     </div>
                 </header>
 
+                <form className="searchForm">
+                    <input type="text" placeholder="Search tasks" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />                    
+                </form>
+
                 <div className="list">
-                    {tasks.map(task => (
+                    {tasks.filter((item) => {
+                        return item.title.toLowerCase().includes(searchTerm.toLowerCase());
+                    }).map(task => (
                         <Task key={task.id} task={task} onComplete={onComplete} onDelete={onDelete} />
                     ))}
                 </div>
