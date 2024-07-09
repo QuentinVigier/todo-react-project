@@ -22,7 +22,7 @@ export default function Task({ task, onComplete, onDelete }: TaskProps) {
                 {task.isCompleted ? <BsFillCheckCircleFill /> : <div />}
             </button>
 
-            <p className="">{task.title}</p>
+            <p className={task.isCompleted ? "textCompleted" : ""}>{task.title}</p>
             <button className="deleteButton" onClick={() => onDelete(task.id)}>
                 <TbTrash size={20} />
             </button>

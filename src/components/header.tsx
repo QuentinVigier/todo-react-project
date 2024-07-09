@@ -1,6 +1,8 @@
 import { AiOutlinePlusCircle } from "react-icons/ai"
 import "../styles/header.css"
 import { useState } from "react"
+import logoUrl from '../assets/Logo.svg';
+
 
 interface HeaderProps {
     onAddTask: (taskTitle: string) => void;
@@ -23,7 +25,8 @@ export function Header({ onAddTask }: HeaderProps) {
 
     return (
         <header className='header'>
-            <img src="../assets/todoLogo.svg" alt="todo logo" />
+            <img src={logoUrl} alt="todo logo" />
+
 
             <form className="newTaskForm" onSubmit={handleSubmit}>
                 <input type="text" placeholder="Add a task" value={title} onChange={onChangeTitle} />
