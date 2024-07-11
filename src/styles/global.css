@@ -20,7 +20,7 @@ button {
 }
 
 /* ----------------------------------------
-STYLE DE BLOC CATEGORIES 
+STYLE DE BLOC FORMULAIRE CATEGORY
 -------------------------------------------*/
 
 .container-categories {
@@ -98,6 +98,8 @@ STYLE DE BLOC SIDEBAR
   padding: 1.5rem 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: 0.4s all ease;
+  display: flex;
+  justify-content: space-between;
 }
 
 .nav a:hover {
@@ -108,3 +110,10 @@ STYLE DE BLOC SIDEBAR
 .nav a {
   color: #ffffff;
 }
+
+.deleteButton {
+  background: none;
+  border: none;
+  color: #808080;
+}
+

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { Header } from "./components/header"
 import Tasks from "./components/tasks"
 import SelectForm from "./components/selectForm";
+import { TbTrash } from "react-icons/tb";
+import "./styles/global.css"
 
 
 const LOCAL_STORAGE_KEY = "todo:savedTasks";
@@ -106,6 +108,11 @@ function App() {
 
   const [choice, setChoice] = useState<string>("All");
 
+  function deleteCate(cate: string) {
+    const newOptions = options.filter(option => option !== cate);
+    setOptionsandSave(newOptions);
+  }
+
   //--------------------------------------------------------------------------------------
   //AFFICHAGE DE LA PAGE
   //--------------------------------------------------------------------------------------
@@ -113,9 +120,6 @@ function App() {
   return (
     <>
       <Header onAddTask={addTask} />
-      <div className="container-categories">
-      <h1 className="textPurple">Choisir une catégorie</h1>
-
       <div id="sidebar">
         <div className="logo">
           <a className="textPurple" href="/">My ToDoList APP</a>
@@ -126,13 +130,17 @@ function App() {
             <a 
             key={option}
             onClick={() => setChoice(option)}
-            >{option} 
+            >{option}
+            <button className="deleteButton" onClick={() => deleteCate((option))}>
+                <TbTrash size={20} />
+            </button> 
             </a>
           ))}
         </div>
       </div>
-
-
+      
+      <div className="container-categories">
+      <h1 className="textPurple">Choisir une catégorie</h1>
       <SelectForm
         options={options}
         onOptionsChange={handleOptionsChange}
