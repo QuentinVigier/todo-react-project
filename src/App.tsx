@@ -59,6 +59,20 @@ function App() {
     setTasksandSave(newTasks);
   }
 
+  function editTaskTitle(taskId: string, newTitle: string) {
+    const newTasks = tasks.map(task => {
+      if (task.id === taskId) {
+        return {
+          ...task,
+          title: newTitle
+        }
+      }
+      return task;
+    });
+    setTasksandSave(newTasks);
+  }
+  
+
   function toggleTaskCompleted(taskId: string) {
     const newTasks = tasks.map(task => {
       if (task.id === taskId) {
@@ -157,6 +171,7 @@ function App() {
       tasks={tasks}
       onComplete={toggleTaskCompleted}
       onDelete ={deleteTask}
+      onEdit={editTaskTitle}
       choice={choice}
       />
     </>

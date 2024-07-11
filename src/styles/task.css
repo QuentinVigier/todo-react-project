@@ -42,8 +42,24 @@ p.textCompleted {
     color: #5E60CE;
 }
 
-.deleteButton {
+.deleteButton, .editButton {
     background: none;
     border: none;
+    color: #808080;
+}
+
+.task input {
+    height: 100%;
+    flex: 1;
+    color: #fff;
+    background: #262626;
+    border: 1px solid #0D0D0D;
+    border-radius: 8px;
+    padding: 0 16px;
+    font-size: 16px;
+    margin: 0 10px;
+}
+
+.task input::placeholder {
     color: #808080;
 }
