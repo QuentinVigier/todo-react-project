@@ -23,6 +23,10 @@ ul {
   list-style-type: none;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 /* ----------------------------------------
 STYLE DE BLOC FORMULAIRE CATEGORY
 -------------------------------------------*/
@@ -71,13 +75,45 @@ STYLE DE BLOC SIDEBAR
 #sidebar {
   background: #262626;
   height: 100vh;
-  width: 200px;
+  width: 250px;
   transition: 0.4s all linear;
   position: fixed;
   left: 0;
   top: 0;
-  width: 250px;
-  height: 100%;
+}
+
+#closeBtn {
+  display: none;
+}
+
+#openBtn {
+  position: fixed;
+  top: 46px;
+  left: 0px;
+}
+
+/* Media query pour les petits écrans */
+@media screen and (max-width: 1200px) {
+  #sidebar {
+    display: none;
+  }
+
+  #sidebar.show,#closeBtn {
+    display: block;
+  }
+}
+/* Bouton pour ouvrir/fermer la sidebar */
+.openbtn {
+  font-size: 30px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #5E60CE;
+  padding: 10px 15px;
+}
+
+.openbtn:hover {
+  background-color: #444;
 }
 
 .logo {
@@ -135,5 +171,3 @@ STYLE DE BLOC SIDEBAR
   color: #808080;
   margin: 0 10px;
 }
-
-

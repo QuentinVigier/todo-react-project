@@ -28,7 +28,7 @@ function App() {
   function loadSavedTasks() {
     const savedTasks = localStorage.getItem(LOCAL_STORAGE_KEY);
     console.log(savedTasks);
-    if(savedTasks) {
+    if (savedTasks) {
       setTasks(JSON.parse(savedTasks));
     }
   }
@@ -45,7 +45,7 @@ function App() {
 
   //Ajouter une tâche
   function addTask(taskTitle: string) {
-    
+
     setTasksandSave([
       ...tasks,
       {
@@ -76,7 +76,7 @@ function App() {
     });
     setTasksandSave(newTasks);
   }
-  
+
 
   //Modifier l'état de complétion d'une tâche (true ou false)
   function toggleTaskCompleted(taskId: string) {
@@ -105,7 +105,7 @@ function App() {
   function loadSavedCate() {
     const savedCate = localStorage.getItem(LOCAL_STORAGE_KEY_CATE);
     console.log(savedCate);
-    if(savedCate) {
+    if (savedCate) {
       setOptions(JSON.parse(savedCate));
     }
   }
@@ -113,7 +113,7 @@ function App() {
   useEffect(() => {
     loadSavedCate();
   }, []);
-  
+
   //Charger les catégories dans le local Storage et sauvegarder les catégories
   function setOptionsandSave(newOptions: string[]) {
     setOptions(newOptions);
@@ -134,59 +134,70 @@ function App() {
 
   //Suppression d'une catégorie
   function deleteCate(cate: string) {
-    if(window.confirm(`Êtes-vous sûr de vouloir supprimer la catégorie ${cate} ?`)) {
-    const newOptions = options.filter(option => option !== cate);
-    setOptionsandSave(newOptions);
-    loadSavedTasks();
+    if (window.confirm(`Êtes-vous sûr de vouloir supprimer la catégorie ${cate} ?`)) {
+      const newOptions = options.filter(option => option !== cate);
+      setOptionsandSave(newOptions);
+      loadSavedTasks();
+    }
   }
-}
+
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
 
   //--------------------------------------------------------------------------------------
   //AFFICHAGE DE LA PAGE
   //--------------------------------------------------------------------------------------
-
   return (
     <>
       <Header onAddTask={addTask} />
-      <div id="sidebar">
+      <button id="openBtn" className="openbtn" onClick={toggleSidebar}>
+        ☰
+      </button>
+      <div id="sidebar"  className={sidebarOpen ? "show" : ""}>
         <div className="logo">
-          <a className="textPurple" href="/">My ToDoList APP</a>
+          <a className="textPurple" href="/">My ToDoList</a>
+          <button id="closeBtn" className="openbtn" onClick={toggleSidebar}>
+        X
+      </button>
         </div>
         <div className="nav">
-          <a className="nav-item-reset" onClick={() => setChoice("All")}>All</a>
+          <a className="nav-item-reset" href="#" key={"All"} onClick={() => setChoice("All")}>All</a>
           {options.map(option => (
             <div className="nav-item">
-            <a 
-            key={option}
-            onClick={() => setChoice(option)}
-            >{option}
-            </a>
-            <button className="deleteButton" onClick={() => deleteCate((option))}>
+              <a
+                key={option}
+                onClick={() => setChoice(option)}
+              >{option}
+              </a>
+              <button className="deleteButton" onClick={() => deleteCate((option))}>
                 <TbTrash size={20} />
-            </button> 
+              </button>
             </div>
           ))}
         </div>
       </div>
 
       <div className="container-categories">
-      <h1 className="textPurple">Choisir une catégorie</h1>
-      <SelectForm
-        options={options}
-        onOptionsChange={handleOptionsChange}
-        selectedOption={selectedOption}
-        onSelectedOptionChange={handleSelectedOptionChange}
-      />
-      <div>
-        <p className="textPurple">Selected Category : <strong className="textBlue">{selectedOption}</strong></p>
+        <h1 className="textPurple">Choisir une catégorie</h1>
+        <SelectForm
+          options={options}
+          onOptionsChange={handleOptionsChange}
+          selectedOption={selectedOption}
+          onSelectedOptionChange={handleSelectedOptionChange}
+        />
+        <div>
+          <p className="textPurple">Selected Category : <strong className="textBlue">{selectedOption}</strong></p>
+        </div>
       </div>
-    </div>
-      <Tasks 
-      tasks={tasks}
-      onComplete={toggleTaskCompleted}
-      onDelete ={deleteTask}
-      onEdit={editTaskTitle} 
-      choice={choice}
+      <Tasks
+        tasks={tasks}
+        onComplete={toggleTaskCompleted}
+        onDelete={deleteTask}
+        onEdit={editTaskTitle}
+        choice={choice}
       />
     </>
   )
