@@ -109,9 +109,11 @@ function App() {
   const [choice, setChoice] = useState<string>("All");
 
   function deleteCate(cate: string) {
+    if(window.confirm(`Êtes-vous sûr de vouloir supprimer la catégorie ${cate} ?`)) {
     const newOptions = options.filter(option => option !== cate);
     setOptionsandSave(newOptions);
   }
+}
 
   //--------------------------------------------------------------------------------------
   //AFFICHAGE DE LA PAGE
@@ -138,7 +140,7 @@ function App() {
           ))}
         </div>
       </div>
-      
+
       <div className="container-categories">
       <h1 className="textPurple">Choisir une catégorie</h1>
       <SelectForm
