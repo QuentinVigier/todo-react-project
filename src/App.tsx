@@ -126,6 +126,7 @@ function App() {
     if(window.confirm(`Êtes-vous sûr de vouloir supprimer la catégorie ${cate} ?`)) {
     const newOptions = options.filter(option => option !== cate);
     setOptionsandSave(newOptions);
+    loadSavedTasks();
   }
 }
 
@@ -141,16 +142,18 @@ function App() {
           <a className="textPurple" href="/">My ToDoList APP</a>
         </div>
         <div className="nav">
-          <a onClick={() => setChoice("All")}>All</a>
+          <a className="nav-item-reset" onClick={() => setChoice("All")}>All</a>
           {options.map(option => (
+            <div className="nav-item">
             <a 
             key={option}
             onClick={() => setChoice(option)}
             >{option}
+            </a>
             <button className="deleteButton" onClick={() => deleteCate((option))}>
                 <TbTrash size={20} />
             </button> 
-            </a>
+            </div>
           ))}
         </div>
       </div>
@@ -171,7 +174,7 @@ function App() {
       tasks={tasks}
       onComplete={toggleTaskCompleted}
       onDelete ={deleteTask}
-      onEdit={editTaskTitle}
+      onEdit={editTaskTitle} 
       choice={choice}
       />
     </>
