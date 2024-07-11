@@ -2,6 +2,7 @@ import "../styles/tasks.css"
 import Task from "./task"
 import { useState } from "react";
 
+//Typage des objets Tasks
 interface Task {
     id: string;
     title: string;
@@ -9,6 +10,7 @@ interface Task {
     category: string;
 }
 
+//Typage des Props
 interface TasksProps {
     tasks: Task[];
     onComplete: (taskId: string) => void;

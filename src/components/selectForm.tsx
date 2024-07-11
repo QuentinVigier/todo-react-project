@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/selectForm.css';
 
+//Typage des Props
 interface SelectFormProps {
     options: string[];
     onOptionsChange: (newOptions: string[]) => void;
@@ -14,9 +15,11 @@ const SelectForm: React.FC<SelectFormProps> = ({
     selectedOption,
     onSelectedOptionChange,
 }) => {
+    //Déclaration des const pour la gestion de la catégorie
     const [newOption, setNewOption] = useState<string>('');
     const [error, setError] = useState<string>('');
 
+    //Gestion du choix de la catégorie
     const handleAddOption = (e: React.FormEvent) => {
         e.preventDefault();
         if (!newOption.trim()) {
@@ -31,6 +34,7 @@ const SelectForm: React.FC<SelectFormProps> = ({
         }
     };
 
+    //Gestion du changement de la catégorie
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         onSelectedOptionChange(e.target.value);
     };
@@ -57,8 +61,6 @@ const SelectForm: React.FC<SelectFormProps> = ({
                     </option>
                 ))}
             </select>
-
-            {/* {selectedOption && <p>You selected: {selectedOption}</p>} */}
         </div>
     );
 };

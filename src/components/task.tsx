@@ -4,6 +4,7 @@ import { BsFillCheckCircleFill } from "react-icons/bs"
 import { useState } from "react";
 import { FaRegEdit, FaRegSave } from "react-icons/fa";
 
+//Typage des objets Task
 interface Task {
     id: string;
     title: string;
@@ -11,6 +12,7 @@ interface Task {
     category: string;
 }
 
+//Typage des Props
 interface TaskProps {
     task: Task;
     onComplete: (taskId: string) => void;
@@ -20,9 +22,11 @@ interface TaskProps {
 
 export default function Task({ task, onComplete, onDelete, onEdit }: TaskProps) {
 
+    //Déclaration des const pour la gestion du mode d'édition
     const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
     const [newTitle, setNewTitle] = useState<string>('');
 
+    //Gestion du mode d'édition
     const handleEditClick = (taskId: string, currentTitle: string) => {
         setEditingTaskId(taskId);
         setNewTitle(currentTitle);

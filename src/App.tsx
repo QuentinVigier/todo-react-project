@@ -24,6 +24,7 @@ function App() {
 
   const [tasks, setTasks] = useState<Task[]>([]);
 
+  //Charger les tâches dans le local Storageau chargement de la page
   function loadSavedTasks() {
     const savedTasks = localStorage.getItem(LOCAL_STORAGE_KEY);
     console.log(savedTasks);
@@ -36,11 +37,13 @@ function App() {
     loadSavedTasks();
   }, []);
 
+  //Charger les tâches dans le local Storage et sauvegarder les tâches
   function setTasksandSave(newTasks: Task[]) {
     setTasks(newTasks);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newTasks));
   }
 
+  //Ajouter une tâche
   function addTask(taskTitle: string) {
     
     setTasksandSave([
@@ -54,11 +57,13 @@ function App() {
     ]);
   }
 
+  //Supprimer une tâche
   function deleteTask(taskId: string) {
     const newTasks = tasks.filter(task => task.id !== taskId);
     setTasksandSave(newTasks);
   }
 
+  //Modifier le titre d'une tâche
   function editTaskTitle(taskId: string, newTitle: string) {
     const newTasks = tasks.map(task => {
       if (task.id === taskId) {
@@ -73,6 +78,7 @@ function App() {
   }
   
 
+  //Modifier l'état de complétion d'une tâche (true ou false)
   function toggleTaskCompleted(taskId: string) {
     const newTasks = tasks.map(task => {
       if (task.id === taskId) {
@@ -95,6 +101,7 @@ function App() {
   const [options, setOptions] = useState<string[]>([]);
   const [selectedOption, setSelectedOption] = useState<string>('');
 
+  //Charger les catégories dans le local Storage
   function loadSavedCate() {
     const savedCate = localStorage.getItem(LOCAL_STORAGE_KEY_CATE);
     console.log(savedCate);
@@ -107,21 +114,25 @@ function App() {
     loadSavedCate();
   }, []);
   
+  //Charger les catégories dans le local Storage et sauvegarder les catégories
   function setOptionsandSave(newOptions: string[]) {
     setOptions(newOptions);
     localStorage.setItem(LOCAL_STORAGE_KEY_CATE, JSON.stringify(newOptions));
   }
 
+  //Gestion des options de catégories
   const handleOptionsChange = (newOptions: string[]) => {
     setOptionsandSave(newOptions);
   };
 
+  //Gestion de la selection de la catégorie
   const handleSelectedOptionChange = (option: string) => {
     setSelectedOption(option);
   };
 
   const [choice, setChoice] = useState<string>("All");
 
+  //Suppression d'une catégorie
   function deleteCate(cate: string) {
     if(window.confirm(`Êtes-vous sûr de vouloir supprimer la catégorie ${cate} ?`)) {
     const newOptions = options.filter(option => option !== cate);
